@@ -1,4 +1,5 @@
-!<!DOCTYPE html>
+<x-app-layout>
+<!DOCTYPE html>
 <html>
  <head>
     <!-- Required meta tags -->
@@ -27,7 +28,11 @@
 				<td>{{$product->make_name}}</td>
 				<td>{{$product->model_name}}</td>
 				<td>{{$product->processor_name}}</td>
-				<td> <a href="product-delete/{{$product->id}}">Delete</a></td>
+				<td>
+				@if(Auth::user()->role==1)
+				 <a href="product-delete/{{$product->id}}">Delete</a>
+				@endif
+				</td>
 			</tr>
 			@endforeach
 		</table>
@@ -47,3 +52,4 @@
 </body>
 </html>
 
+</x-app-layout>

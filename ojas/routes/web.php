@@ -17,14 +17,20 @@ use App\Http\Controllers\OpsController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/products',[OpsController::class,'index']);
+//Route::get('/products',[OpsController::class,'index']);
 Route::post('/save',[OpsController::class,'store']);
-Route::get('/getMakes',[OpsController::class,'showMake']);
-Route::get('/product-list',[OpsController::class,'getAllProducts']);
-Route::get('/product-delete/{id}',[OpsController::class,'deleteProd']);
+//Route::get('/getMakes',[OpsController::class,'showMake']);
+//Route::get('/product-list',[OpsController::class,'getAllProducts']);
+//`Route::get('/product-delete/{id}',[OpsController::class,'deleteProd']);
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/products', [OpsController::class,'index'] )->name('products');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/product-list', [OpsController::class,'getAllProducts'] )->name('product-list');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/product-delete/{id}', [OpsController::class,'deleteProd'] )->name('products-delete');
 
